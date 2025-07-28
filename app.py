@@ -67,62 +67,68 @@ TEMPLATE = '''
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Store Product Search</title>
+    <title>LUZORE Product Search</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #e9f5f9;
             margin: 0;
             padding: 0;
         }
         .container {
-            max-width: 600px;
-            margin: 80px auto;
-            background: #fff;
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            border-radius: 10px;
+            max-width: 700px;
+            margin: 60px auto;
+            background: #ffffff;
+            padding: 35px;
+            box-shadow: 0 0 20px rgba(0, 128, 128, 0.2);
+            border-radius: 12px;
         }
         h2 {
             text-align: center;
-            color: #333;
+            color: #006666;
         }
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
         input[type="text"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
+            padding: 12px;
+            border: 1px solid #b0d9e8;
+            border-radius: 6px;
+            font-size: 17px;
         }
         button {
-            padding: 10px;
-            background-color: #007bff;
+            padding: 12px;
+            background-color: #00aaff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #0077aa;
         }
         .result {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 18px;
             text-align: center;
         }
         .result-path {
-            margin: 5px 0;
+            margin: 6px 0;
+        }
+        .brand-logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            height: 80px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>🔍 Store Product Search (BFS)</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Perfume_bottle_icon.svg/1200px-Perfume_bottle_icon.svg.png" alt="LUZORE Logo" class="brand-logo">
+        <h2>💎 Welcome to LUZORE Product Search</h2>
         <form method="post">
             <input type="text" name="product" placeholder="Enter product name (e.g., Luxe Noir)" required>
             <button type="submit">Search</button>
