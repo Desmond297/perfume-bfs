@@ -44,17 +44,18 @@ store_tree = {
     }
 }
 
-# BFS Search
-def bfs_search(tree, target):
+# BFS Search (find all paths to the target)
+def bfs_search_all_paths(tree, target):
     queue = deque([("Homepage", ["Homepage"])])
+    found_paths = []
     while queue:
         node, path = queue.popleft()
         subtree = get_subtree(tree, path)
         if node == target:
-            return path
+            found_paths.append(path)
         for child in subtree.get(node, {}):
             queue.append((child, path + [child]))
-    return None
+    return found_paths
 
 def get_subtree(tree, path):
     for p in path:
@@ -114,6 +115,9 @@ TEMPLATE = '''
             font-size: 18px;
             text-align: center;
         }
+        .result-path {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -124,10 +128,12 @@ TEMPLATE = '''
             <button type="submit">Search</button>
         </form>
 
-        {% if result %}
+        {% if result_paths %}
             <div class="result">
-                <h3>✅ Path to "{{ product }}":</h3>
-                <p>{{ result|join(" → ") }}</p>
+                <h3>✅ All Paths to "{{ product }}":</h3>
+                {% for path in result_paths %}
+                    <p class="result-path">{{ path|join(" → ") }}</p>
+                {% endfor %}
             </div>
         {% elif product %}
             <div class="result">
@@ -142,12 +148,11 @@ TEMPLATE = '''
 @app.route('/', methods=['GET', 'POST'])
 def index():
     product = None
-    result = None
+    result_paths = []
     if request.method == 'POST':
         product = request.form['product']
-        result = bfs_search(store_tree, product)
-    return render_template_string(TEMPLATE, result=result, product=product)
+        result_paths = bfs_search_all_paths(store_tree, product)
+    return render_template_string(TEMPLATE, result_paths=result_paths, product=product)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
